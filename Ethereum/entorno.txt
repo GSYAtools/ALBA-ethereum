@@ -1,0 +1,73 @@
+https://archive.trufflesuite.com/docs/truffle
+---------------------------------------------------------
+
+INSTALAR CURL
+	sudo apt-get install curl
+
+INSTALAR NODE VERSION MANAGER (NVM)
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+(Reiniciar terminal)
+
+INSTALAR NODEJS V14-18
+	nvm install 18
+	nvm use 18
+
+COMPROBAR QUE NODE SE HA INSTALADO CORRECTAMENTE
+	node -v
+
+INSTALAR LA ULTIMA VERSIÓN DE NPM
+	npm i -g npm
+	npm -v 
+(10.8.3)
+
+INSTALAR TRUFFLE
+	npm install -g truffle
+	truffle version
+	
+INSTALAR CLIENTE ETHEREUM (DESARROLLADORES - GANACHE)
+	https://archive.trufflesuite.com/ganache/
+	(Se ejecuta en: "http://127.0.0.1:8545" permite 10 cuentas)
+	
+	Se descarga un archivo .AppImage que debemos hacer ejecutable y tener FUSE instalado
+	chmod a+x exampleName.AppImage
+	https://github.com/AppImage/AppImageKit/wiki/FUSE
+	(Ver versión ubuntu: lsb_release -a)
+	
+	Ejecutar Ganache con "ganache-cli"
+	
+CREAR UN NUEVO PROYECTO
+	mkdir ProjectFolder
+	cd ProjectFolder
+	truffle init
+	
+AÑADIR PROYECTO A GANACHE
+	Ajustes-Add Project-"Seleccionar truffle-config.js"
+	
+EDITAR TRUFFLE-CONFIG.JS
+	Quitamos el comentario en module.exports-networks-developtment
+	completamos con la siguiente información para Ganache
+	    development: {
+	    	host: "127.0.0.1",     // Localhost (default: none)
+	    	port: 8545,            // Standard Ethereum port (default: none)
+	    	network_id: "*",    // Any network (default: none)
+	    },
+	Toda la informaciión de host, puerto e id_red están en el explorador de Ganache
+	
+COMPILAR PROYECTO
+	truffle compile (Solo compilará los contratos actualizados desde la ultima compilación)
+	truffle compile --all (Compilará todo)
+	
+CREAR UN NUEVO SMARTCONTRACT
+	Dentro de la carpeta "contracts" creamos un archivo con extensión .sol
+	touch MyContract.sol
+	
+MIGRAR A LA RED GANACHE
+	truffle migrate --network <network_name>
+	
+TESTAR EL DESPLIEGUE DEL CONTRATO
+	truffle test --network <network_name>
+INTERACTUAR CON EL CONTRATO
+	truffle console --network <network_name>
+	
+	
+
