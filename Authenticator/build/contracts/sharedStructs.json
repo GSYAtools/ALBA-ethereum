@@ -173,15 +173,15 @@
     "version": "0.8.21+commit.d9974bed.Emscripten.clang"
   },
   "networks": {
-    "1727258462485": {
+    "1727275590202": {
       "events": {},
       "links": {},
-      "address": "0x960a4B2237eE4846Dae7E043b82eA4618b57e530",
-      "transactionHash": "0x8742ecdae474aeba8abd6e00982aaa887050cea472d76c64ec6ae96d7123058f"
+      "address": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+      "transactionHash": "0x481eb018dc57240293fe20c0ed9a02ef17a359fbf4c9972d2beff16211da4b08"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-09-25T11:20:21.151Z",
+  "updatedAt": "2024-09-25T15:06:22.169Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Ismael Rabanal Martín, Eugenio Romero Ciudad",
