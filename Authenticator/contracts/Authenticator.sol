@@ -9,7 +9,6 @@ pragma solidity >=0.8.0;
 
 import "./Structs.sol";
 
-
 contract Authenticator {
     
     struct ProofOfIdentity {
@@ -18,8 +17,9 @@ contract Authenticator {
         uint256 expireDate;
     }
 
-    ProofOfIdentity[] private proofs;
-    address admin;
+    mapping(address => ProofOfIdentity) public tokens;
+    address[] public userAddresses;
+    address public admin;
 
     constructor() {
         admin = msg.sender;
@@ -30,23 +30,24 @@ contract Authenticator {
         _;
     }
     
-    function addToken(sharedStructs.User memory user, string memory token, uint256 expireDate) isAdmin public{
-       proofs.push(ProofOfIdentity({user: user, token: token, expireDate: expireDate}));
+    function addToken(sharedStructs.User memory user, string memory token, uint256 expireDate) public {
+        require(tokens[user.id].user.id == address(0), "User already registered");
+        require(user.id == msg.sender, "Can only register yourself");
+        
+        tokens[user.id] = ProofOfIdentity({user: user, token: token, expireDate: expireDate});
+        userAddresses.push(user.id);
     }
     
-    function getAllTokens() public view returns(ProofOfIdentity[] memory tokens){
-        return proofs;
-    }
-    
-    function getTokenByUser(sharedStructs.User memory user) public view returns(ProofOfIdentity memory){
-        ProofOfIdentity memory token;
-        uint256 counter = 0;
-        for (uint256 i = 0; i < proofs.length; i++){
-            if(proofs[i].user.id == user.id){
-                token = proofs[i];
-                counter++;
-            }
+    function getAllTokens() public view returns(ProofOfIdentity[] memory) {
+        ProofOfIdentity[] memory allTokens = new ProofOfIdentity[](userAddresses.length);
+        for (uint i = 0; i < userAddresses.length; i++) {
+            allTokens[i] = tokens[userAddresses[i]];
         }
-        return token;
+        return allTokens;
+    }
+    
+    function getTokenByUser(sharedStructs.User memory user) public view returns(ProofOfIdentity memory) {
+        require(tokens[user.id].user.id != address(0), "User not found");
+        return tokens[user.id];
     }
 }

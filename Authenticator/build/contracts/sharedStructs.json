@@ -178,10 +178,16 @@
       "links": {},
       "address": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
       "transactionHash": "0x481eb018dc57240293fe20c0ed9a02ef17a359fbf4c9972d2beff16211da4b08"
+    },
+    "1727338319279": {
+      "events": {},
+      "links": {},
+      "address": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+      "transactionHash": "0x481eb018dc57240293fe20c0ed9a02ef17a359fbf4c9972d2beff16211da4b08"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-09-25T15:06:22.169Z",
+  "updatedAt": "2024-09-26T09:06:44.959Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Ismael Rabanal Martín, Eugenio Romero Ciudad",
