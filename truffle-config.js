@@ -9,7 +9,7 @@ module.exports = {
     // Red de desarrollo local (Ganache)
     development: {
       host: "127.0.0.1",     // Localhost
-      port: 7545,            // Puerto estándar de Ganache
+      port: 8545,            // Puerto estándar de Ganache
       network_id: "*",       // Cualquier red
       gas: 6721975,          // Límite de gas
       gasPrice: 20000000000  // 20 gwei
