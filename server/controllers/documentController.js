@@ -1,5 +1,5 @@
 const pool = require('../config/database');
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const DocumentManagement = require('../../build/contracts/DocumentManagement.json');
 
 // Inicializa Web3 con la URL de Ganache
