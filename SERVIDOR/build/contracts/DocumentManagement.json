@@ -1673,7 +1673,7 @@
   "sourceMap": "57:1088:0:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "57:1088:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;383:258;;;;;;:::i;:::-;;:::i;:::-;;192:45;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;192:45:0;;;;;;;;654:25:1;;;-1:-1:-1;;;;;715:32:1;;;710:2;695:18;;688:60;764:18;;;757:34;642:2;627:18;192:45:0;;;;;;;;1016:127;;;;;;:::i;:::-;1087:4;1110:13;;;;;;;;;;;:18;:26;;1016:127;;;;967:14:1;;960:22;942:41;;930:2;915:18;1016:127:0;802:187:1;647:363:0;;;;;;:::i;:::-;;:::i;383:258::-;485:1;455:13;;;;;;;;;;:18;:32;447:68;;;;-1:-1:-1;;;447:68:0;;1196:2:1;447:68:0;;;1178:21:1;1235:2;1215:18;;;1208:30;1274:25;1254:18;;;1247:53;1317:18;;447:68:0;;;;;;;;;541:43;;;;;;;;;;;556:10;541:43;;;;;;;568:15;541:43;;;;;;-1:-1:-1;525:13:0;;;;;;;;;:59;;;;;;;;;;;-1:-1:-1;;;;;;525:59:0;-1:-1:-1;;;;;525:59:0;;;;;;;;;;;;;;;;;;599:35;;1520:25:1;;;1561:18;;;1554:60;525:13:0;;599:35;;1493:18:1;599:35:0;;;;;;;;383:258;;:::o;647:363::-;755:1;725:13;;;;;;;;;;:18;717:68;;;;-1:-1:-1;;;717:68:0;;1827:2:1;717:68:0;;;1809:21:1;1866:2;1846:18;;;1839:30;1905:25;1885:18;;;1878:53;1948:18;;717:68:0;1625:347:1;717:68:0;803:9;:13;;;;;;;;;;:19;;;-1:-1:-1;;;;;803:19:0;826:10;803:33;795:76;;;;-1:-1:-1;;;795:76:0;;2179:2:1;795:76:0;;;2161:21:1;2218:2;2198:18;;;2191:30;2257:32;2237:18;;;2230:60;2307:18;;795:76:0;1977:354:1;795:76:0;881:9;:13;;;;;;;;;;;;:28;;;945:15;919:23;;;;:41;975:28;;2482:25:1;;;881:13:0;;975:28;;2455:18:1;975:28:0;2336:177:1;14:248;82:6;90;143:2;131:9;122:7;118:23;114:32;111:52;;;159:1;156;149:12;111:52;-1:-1:-1;;182:23:1;;;252:2;237:18;;;224:32;;-1:-1:-1;14:248:1:o;267:180::-;326:6;379:2;367:9;358:7;354:23;350:32;347:52;;;395:1;392;385:12;347:52;-1:-1:-1;418:23:1;;267:180;-1:-1:-1;267:180:1:o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract DocumentManagement {\n    struct Document {\n        bytes32 hash;\n        address owner;\n        uint256 timestamp;\n    }\n\n    mapping(bytes32 => Document) public documents;\n\n    event DocumentAdded(bytes32 indexed id, bytes32 hash, address owner);\n    event DocumentUpdated(bytes32 indexed id, bytes32 newHash);\n\n    function addDocument(bytes32 id, bytes32 hash) public {\n        require(documents[id].hash == bytes32(0), \"Document already exists\");\n        documents[id] = Document(hash, msg.sender, block.timestamp);\n        emit DocumentAdded(id, hash, msg.sender);\n    }\n\n    function updateDocument(bytes32 id, bytes32 newHash) public {\n        require(documents[id].hash != bytes32(0), \"Document does not exist\");\n        require(documents[id].owner == msg.sender, \"Only owner can update document\");\n        documents[id].hash = newHash;\n        documents[id].timestamp = block.timestamp;\n        emit DocumentUpdated(id, newHash);\n    }\n\n    function verifyDocument(bytes32 id, bytes32 hash) public view returns (bool) {\n        return documents[id].hash == hash;\n    }\n}\n",
-  "sourcePath": "/home/alarcos/Documentos/GitHub/ALBA-ethereum/contracts/DocumentManagement.sol",
+  "sourcePath": "/home/alarcos/Documentos/GitHub/ALBA-ethereum/SERVIDOR/contracts/DocumentManagement.sol",
   "ast": {
     "absolutePath": "project:/contracts/DocumentManagement.sol",
     "exportedSymbols": {
@@ -3493,10 +3493,16 @@
       "links": {},
       "address": "0x95810ae83379D1E1804a288d8eB96A17B5428b9f",
       "transactionHash": "0x67e3e10800f6853928172731699f9ef3dc3a50f0fd219cfb4ece99fe8ba87f0c"
+    },
+    "1728552210813": {
+      "events": {},
+      "links": {},
+      "address": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+      "transactionHash": "0xc7844d9c39a01e49e3a84edcb5f024f0a5b519b343fa546eb87342a4b6ac6ef4"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-10T08:49:26.895Z",
+  "updatedAt": "2024-10-10T09:23:58.918Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
