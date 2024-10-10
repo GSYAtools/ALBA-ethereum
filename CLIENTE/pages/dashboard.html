@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Gestión de Documentos</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <nav>
+            <button id="logoutBtn">Cerrar Sesión</button>
+        </nav>
+    </header>
+    <main class="container">
+        <section id="misDocumentos">
+            <h2>Mis Documentos</h2>
+            <button id="agregarDocumento">Agregar Documento</button>
+            <ul id="listaDocumentos"></ul>
+        </section>
+        <section id="documentosCompartidos">
+            <h2>Documentos Compartidos Conmigo</h2>
+            <ul id="listaDocumentosCompartidos"></ul>
+        </section>
+    </main>
+    <script src="scripts/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/* Estilos específicos para el dashboard */
+header nav {
+    display: flex; 
+    justify-content: space-between; 
+}
+
+main {
+    padding-top: 20px; 
+}
+
+#misDocumentos, #documentosCompartidos {
+    margin-bottom: 20px; 
+}
