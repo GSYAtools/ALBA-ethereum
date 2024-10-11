@@ -13,9 +13,10 @@ CREATE TABLE users (
 CREATE TABLE documents (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
-    contenido TEXT NOT NULL,
+    contenido BYTEA NOT NULL,
     propietario_id INTEGER REFERENCES users(id),
     hash_blockchain VARCHAR(66),
+    mime_type VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
