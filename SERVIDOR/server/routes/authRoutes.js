@@ -15,9 +15,6 @@ router.post('/registro', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Todos los campos son requeridos' });
         }
 
-        console.log('Pool status:', !!pool);
-        console.log('DATABASE_URL:', process.env.DATABASE_URL);
-
         client = await pool.connect();
 
         // Verificar si el usuario ya existe
