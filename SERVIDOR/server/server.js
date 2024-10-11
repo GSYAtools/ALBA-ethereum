@@ -5,10 +5,23 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const documentRoutes = require('./routes/documentRoutes');
 const { Web3 } = require('web3');
+const fs = require('fs');
+const morgan = require('morgan');
+const path = require('path');
 
 dotenv.config();
 
 const app = express();
+
+// Configurar logging
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'server.log'), { flags: 'a' });
+// Para el archivo (logs detallados)
+app.use(morgan('combined', { stream: accessLogStream }));
+// Para la consola (logs más concisos)
+app.use(morgan('dev', {
+    skip: function (req, res) { return res.statusCode < 400 }
+}));
+
 
 // Middleware
 app.use(cors());
@@ -23,7 +36,7 @@ const pool = new Pool({
 const web3 = new Web3(process.env.ETHEREUM_NODE_URL);
 
 // Rutas
-app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 app.use('/api/documents', documentRoutes);
 
 // Ruta de prueba de conexión a Ethereum
@@ -37,6 +50,10 @@ app.get('/api/ethereum-status', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+    console.log(`Los logs se están escribiendo en ${path.join(__dirname, 'server.log')}`);
+});
 
-module.exports = { pool, web3 };
+module.exports = { pool, web3 }
+
