@@ -1,0 +1,10 @@
+
+> ALBA-ethereum@1.0.0 start
+> node server/server.js
+
+(node:43281) Warning: Accessing non-existent property 'pool' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43281) Warning: Accessing non-existent property 'web3' of module exports inside circular dependency
+(node:43281) Warning: Accessing non-existent property 'pool' of module exports inside circular dependency
+(node:43281) Warning: Accessing non-existent property 'web3' of module exports inside circular dependency
+Servidor corriendo en puerto 3000
