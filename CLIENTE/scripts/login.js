@@ -1,3 +1,5 @@
+import config from './config.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
 
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Aquí realizarías la llamada al servidor para autenticar
         console.log('Intento de login con:', email);
 
-        fetch('/api/login', {
+        fetch(`${config.apiUrl}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
