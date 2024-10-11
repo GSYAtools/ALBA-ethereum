@@ -24,8 +24,3 @@ CREATE TABLE document_sharing (
     user_id INTEGER REFERENCES users(id),
     PRIMARY KEY (document_id, user_id)
 );
-
--- Crear índices para mejorar el rendimiento de las consultas
-CREATE INDEX idx_documentos_hash ON documentos(hash_ethereum);
-CREATE INDEX idx_permisos_documento ON permisos(id_documento);
-CREATE INDEX idx_permisos_usuario ON permisos(id_usuario);

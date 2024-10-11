@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const documentRoutes = require('./routes/documentRoutes');
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 
 dotenv.config();
 
