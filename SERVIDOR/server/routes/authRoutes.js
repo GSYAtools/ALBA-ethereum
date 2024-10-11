@@ -76,13 +76,17 @@ router.post('/registro', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log('Solicitud de login recibida:', req.body);
     let client;
     try {
         const { email, password } = req.body;
 
         // Validación básica
         if (!email || !password) {
-            return res.status(400).json({ message: 'Email y contraseña son requeridos' });
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Email y contraseña son requeridos' 
+            });
         }
 
         client = await pool.connect();
@@ -90,21 +94,42 @@ router.post('/login', async (req, res) => {
         const result = await client.query('SELECT * FROM users WHERE email = $1', [email]);
 
         if (result.rows.length === 0) {
-            return res.status(400).json({ message: 'Credenciales inválidas' });
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Credenciales inválidas' 
+            });
         }
 
         const user = result.rows[0];
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({ message: 'Credenciales inválidas' });
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Credenciales inválidas' 
+            });
         }
 
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token, ethereumAddress: user.ethereum_address });
+        const token = jwt.sign(
+            { userId: user.id }, 
+            process.env.JWT_SECRET, 
+            { expiresIn: '1h' }
+        );
+
+        res.json({ 
+            success: true,
+            message: 'Login exitoso',
+            token, 
+            userId: user.id,
+            ethereumAddress: user.ethereum_address 
+        });
     } catch (error) {
         console.error('Error en el login:', error);
-        res.status(500).json({ message: 'Error del servidor', error: error.message });
+        res.status(500).json({ 
+            success: false, 
+            message: 'Error del servidor', 
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
     } finally {
         if (client) {
             client.release();

@@ -11,12 +11,14 @@ if (databaseUrl) {
     const [user, password] = auth ? auth.split(':') : [];
 
     // Mostrar los datos parseados (asegúrate de no loggear esto en producción)
+    /*
     console.log('Datos parseados de DATABASE_URL:');
     console.log('Hostname:', hostname);
     console.log('Port:', port);
     console.log('Database:', pathname ? pathname.slice(1) : '');
     console.log('User:', user);
     console.log('Password:', password ? '********' : 'No definida');
+    */
 
     // Configurar el pool de conexiones
     pool = new Pool({
